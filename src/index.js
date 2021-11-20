@@ -4,7 +4,6 @@ const onClickAdd = () => {
   //テキストボックスの値を取得して、初期化する
   const inputText = document.getElementById("add-text").value;
   document.getElementById("add-text").value = "";
-
   createIncompleteList(inputText);
 };
 
@@ -24,7 +23,7 @@ const createIncompleteList = (text) => {
   //完了ボタン
   const completeButton = document.createElement("button");
   completeButton.innerText = "完了";
-
+  //完了ボタンを押したときの処理
   completeButton.addEventListener("click", () => {
     deleteFromIncompleteList(completeButton.parentNode);
     //完了リストに追加する要素を取得
@@ -42,14 +41,22 @@ const createIncompleteList = (text) => {
     console.log(span);
     const li = document.createElement("li");
     li.className = "list-row";
+    //戻すボタン
     const backButton = document.createElement("button");
     backButton.innerText = "戻す";
+
+    //戻すボタンを押したときの処理
+    backButton.addEventListener("click", () => {
+      const deleteTarget = backButton.parentNode;
+      document.getElementById("complete-list").removeChild(deleteTarget);
+      const text = backButton.parentNode.firstElementChild.innerText;
+      createIncompleteList(text);
+    });
 
     //liタグの子要素に各要素を設定
     li.appendChild(span);
     li.appendChild(backButton);
     document.getElementById("complete-list").appendChild(li);
-
     console.log(li);
   });
   //削除ボタン
