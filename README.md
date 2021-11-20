@@ -2,4 +2,5 @@
 
 Created with CodeSandbox
 
-TODO リスト作成の練習
+ToDo リスト作成の練習
+Vanilla JS で作成
